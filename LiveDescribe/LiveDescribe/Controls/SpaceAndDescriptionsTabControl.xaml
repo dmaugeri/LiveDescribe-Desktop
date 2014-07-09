@@ -34,7 +34,7 @@
             x:Key="ItemIndexTemplate">
             <TextBlock
                 Style="{StaticResource InfoTabTextBlockStyle}"
-                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplatedParent.(ItemsControl.AlternationIndex)}" 
+                Text="{Binding Index}" 
                 Width="30"/>
         </DataTemplate>
         <DataTemplate
@@ -159,8 +159,7 @@
                 <ListView
                     Name="DescriptionsListView"
                     VirtualizingPanel.IsVirtualizing="True"
-                    ItemsSource="{Binding RegularDescriptions}"
-                    AlternationCount="{Binding Path=Spaces.Count}">
+                    ItemsSource="{Binding RegularDescriptions}">
                     <ListView.Resources>
                         <ContextMenu
                             x:Key="RegularDescriptionContextMenu">
