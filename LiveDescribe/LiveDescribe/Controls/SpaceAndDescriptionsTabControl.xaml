@@ -4,17 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="clr-namespace:LiveDescribe.Converters"
+    xmlns:controls="clr-namespace:LiveDescribe.Controls"
+    xmlns:s="clr-namespace:LiveDescribe.Resources.UiStrings"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     mc:Ignorable="d"
     d:DesignHeight="400"
-    d:DesignWidth="300"
-    xmlns:converters="clr-namespace:LiveDescribe.Converters"
-    xmlns:s="clr-namespace:LiveDescribe.Resources.UiStrings">
+    d:DesignWidth="300">
     <UserControl.Resources>
         <converters:MillisecondsTimeConverterFormatter
             x:Key="MillisecondsTimeConverter" />
         <converters:VarNotNullToBoolConverter
             x:Key="VarNotNullToBoolConverter" />
-
         <Style
             x:Key="InfoTabTextBlockStyle"
             TargetType="TextBlock">
@@ -22,12 +23,18 @@
                 Property="FontWeight"
                 Value="Bold" />
         </Style>
+        
+        <controls:AutoRefreshCollectionViewSource Source="{Binding Spaces}" x:Key="cvs">
+            <controls:AutoRefreshCollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="StartInVideo"/>
+            </controls:AutoRefreshCollectionViewSource.SortDescriptions>
+        </controls:AutoRefreshCollectionViewSource>
 
         <DataTemplate
             x:Key="ItemIndexTemplate">
             <TextBlock
                 Style="{StaticResource InfoTabTextBlockStyle}"
-                Text="{Binding Path=Index}" 
+                Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplatedParent.(ItemsControl.AlternationIndex)}" 
                 Width="30"/>
         </DataTemplate>
         <DataTemplate
@@ -93,7 +100,7 @@
                 <ListView
                     Name="SpacesListView"
                     VirtualizingPanel.IsVirtualizing="True"
-                    ItemsSource="{Binding Spaces}">
+                    ItemsSource="{Binding Source={StaticResource cvs}}">
                     <ListView.SelectedItem>
                         <Binding
                             Path="SelectedSpace"
@@ -152,7 +159,8 @@
                 <ListView
                     Name="DescriptionsListView"
                     VirtualizingPanel.IsVirtualizing="True"
-                    ItemsSource="{Binding RegularDescriptions}">
+                    ItemsSource="{Binding RegularDescriptions}"
+                    AlternationCount="{Binding Path=Spaces.Count}">
                     <ListView.Resources>
                         <ContextMenu
                             x:Key="RegularDescriptionContextMenu">
