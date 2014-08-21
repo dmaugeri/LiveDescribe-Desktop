@@ -25,7 +25,7 @@ namespace LiveDescribe.View
     {
         private readonly MainWindowViewModel _mainWindowViewModel;
         private readonly StartupWindowViewModel _dataContext;
-        private bool _shutdownapp;
+        private bool _shutdownapp = true;
 
         public StartupWindow(StartupWindowViewModel dataContext, MainWindowViewModel mainWindowViewModel)
         {
