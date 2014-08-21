@@ -54,6 +54,15 @@ namespace LiveDescribe.Factories
             _aboutInfoView.Focus();
         }
 
+        public static StartupWindowViewModel SpawnStartupView(MainWindowViewModel mainWindowViewModel)
+        {
+            var startUpViewModel = new StartupWindowViewModel(mainWindowViewModel);
+            var startupView = new StartupWindow(startUpViewModel, mainWindowViewModel);
+            startupView.Show();
+
+            return startUpViewModel;
+        }
+
         /// <summary>
         /// Creates a ExportWindowView and attaches an instance of ExportWindowViewModel to it.
         /// </summary>

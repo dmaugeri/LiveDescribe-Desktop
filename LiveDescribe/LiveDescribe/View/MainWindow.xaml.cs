@@ -2,6 +2,7 @@
 using LiveDescribe.Controls;
 using LiveDescribe.Converters;
 using LiveDescribe.Extensions;
+using LiveDescribe.Factories;
 using LiveDescribe.Interfaces;
 using LiveDescribe.Managers;
 using LiveDescribe.Model;
@@ -82,6 +83,12 @@ namespace LiveDescribe.View
             _videoMedia = MediaControl.VideoMedia;
 
             var mainWindowViewModel = new MainWindowViewModel(_videoMedia);
+
+            #region Start Window
+            var startupViewModel = DialogShower.SpawnStartupView(mainWindowViewModel);
+            this.Hide();
+            startupViewModel.WindowClosedRequested += (sender, e) => Show();
+            #endregion
 
             DataContext = mainWindowViewModel;
             _mainWindowViewModel = mainWindowViewModel;

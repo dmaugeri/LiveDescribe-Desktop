@@ -1,0 +1,73 @@
+﻿<Window x:Class="LiveDescribe.View.StartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StartupWindow" Height="300" Width="300"
+        xmlns:s="clr-namespace:LiveDescribe.Resources.UiStrings"
+        ResizeMode="NoResize"
+        Closing="StartupWindow_OnClosing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height =" 50"/>
+            <RowDefinition Height ="50"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Button 
+            Margin="15,10,15,10"
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="{x:Static s:UiStrings.MenuItem_NewProject}"
+            Command="{Binding NewProjectOnStartup}"/>
+        
+        <Button
+            Margin="15,10,15,10"
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="{x:Static s:UiStrings.MenuItem_OpenProject}"
+            Command="{Binding OpenProjectOnStartup}"/>
+        
+        <Button 
+            Margin="15,10,15,10"
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="{x:Static s:UiStrings.Command_Cancel}" Click="Button_Click"/>
+        
+        <TextBlock
+            Margin="15,10,15,10"
+            Text="Recent Projects:"
+            Grid.Column="0"
+            Grid.Row="3"/>
+        
+        
+        <ListView
+            Name="RecentProjectsListBox"
+            Grid.Column="1"
+            Grid.Row="3"
+            ItemsSource="{Binding RecentFilePaths}">
+            <ListView.ItemContainerStyle>
+                <Style
+                    TargetType="ListViewItem">
+                    <EventSetter
+                        Event="MouseDoubleClick"
+                        Handler="RecentProjectItem_DoubleClick" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Name}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

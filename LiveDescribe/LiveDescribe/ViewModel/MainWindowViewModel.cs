@@ -25,7 +25,7 @@ using System.Windows.Input;
 
 namespace LiveDescribe.ViewModel
 {
-    class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         #region Logger
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger
@@ -589,7 +589,7 @@ namespace LiveDescribe.ViewModel
             Settings.Default.Save();
         }
 
-        private void CopyVideoAndSetProject(string source, Project project)
+        public void CopyVideoAndSetProject(string source, Project project)
         {
             LoadingViewModel.Visible = true;
 

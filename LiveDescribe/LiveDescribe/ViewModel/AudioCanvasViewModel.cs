@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace LiveDescribe.ViewModel
 {
-    class AudioCanvasViewModel : ViewModelBase
+    public class AudioCanvasViewModel : ViewModelBase
     {
         private readonly ProjectManager _projectManager;
         private LiveDescribeVideoStates _currentState;

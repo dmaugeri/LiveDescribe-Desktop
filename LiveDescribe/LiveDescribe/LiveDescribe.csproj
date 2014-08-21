@@ -261,6 +261,7 @@
     <Compile Include="ViewModel\LoadingViewModel.cs" />
     <Compile Include="ViewModel\MarkingSpacesControlViewModel.cs" />
     <Compile Include="ViewModel\SpaceRecordingViewModel.cs" />
+    <Compile Include="ViewModel\StartupWindowViewModel.cs" />
     <Compile Include="View\AboutInfoView.xaml.cs">
       <DependentUpon>AboutInfoView.xaml</DependentUpon>
     </Compile>
@@ -285,6 +286,9 @@
     </Compile>
     <Compile Include="View\SpaceRecordingView.xaml.cs">
       <DependentUpon>SpaceRecordingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartupWindow.xaml.cs">
+      <DependentUpon>StartupWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\AudioCanvasControl.xaml">
       <SubType>Designer</SubType>
@@ -385,6 +389,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SpaceRecordingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
